@@ -1,0 +1,401 @@
+:root { 
+    --mask-x: 50%; 
+    --mask-y: 50%; 
+    --mask-size: 0px; 
+    --accent: darkgray; /* Nova paleta de cor */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #000; color: white; overflow-x: hidden; font-family: 'Inter', sans-serif; }
+
+/* Textura de Cinema */
+.noise {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: url('https://grainy-gradients.vercel.app/noise.svg');
+    opacity: 0.05; pointer-events: none; z-index: 9999;
+}
+
+/* --- SECTION 01: HERO --- */
+.hero-mask { clip-path: circle(var(--mask-size) at var(--mask-x) var(--mask-y)); will-change: clip-path; }
+.hero-bg { width: 100%; height: 100%; object-fit: cover; }
+
+/* --- SECTION 02: CORDA BAMBA --- */
+.clipe-section { height: 18vh; background-color: #000; position: relative; }
+.parallax-wrapper {
+    position: sticky; top: 0; height: 100vh; width: 100%;
+    display: flex; align-items: center; justify-content: center;
+    background-color: #000; overflow: hidden;
+}
+.layer { position: absolute; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.layer img { width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+.layer-bg { z-index: 1; }
+.layer-title { z-index: 2; opacity: 0; transform: scale(1.05); }
+.layer-gui { z-index: 3; opacity: 0; }
+
+/* --- SECTION 03: VIVER NOVAMENTE --- */
+.viver-novamente-section {
+    position: relative; height: 140vh; background-color: #000;
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.telemetry-bg { position: absolute; inset: 0; opacity: 0.15; pointer-events: none; }
+.line-path { fill: none; stroke: var(--accent); stroke-width: 1; }
+
+.viver-content { position: relative; z-index: 10; text-align: center; width: 90%; }
+.reveal-text { font-size: clamp(2.2rem, 6.5vw, 5.5rem); line-height: 0.95; text-transform: uppercase; }
+
+/* TIPOGRAFIA LANDO */
+.grotesk-bold { font-family: 'Inter', sans-serif; font-weight: 700; }
+.grotesk-black { font-family: 'Inter', sans-serif; font-weight: 900; }
+.serif-medium { font-family: 'Playfair Display', serif; font-weight: 500; font-style: italic; text-transform: none; }
+.dim { color: rgba(255, 255, 255, 0.1); }
+.color-white { color: #fff; }
+.color-accent-glow { color: var(--accent); text-shadow: 0 0 20px rgba(169, 169, 169, 0.3); }
+
+/* --- SECTION 04: CARROSSEL 3D (PINNED) --- */
+#album-carousel {
+    height: 300vh; /* Espaço para o scroll travar */
+    background: #000;
+}
+.carousel-3d-container {
+    position: sticky; top: 0; height: 100vh; width: 100%;
+    display: flex; align-items: center; overflow: hidden;
+}
+.carousel-3d-track {
+    display: flex; gap: 10vw; padding-left: 35vw; /* Começa recuado para a 1ª foto brilhar */
+    transform-style: preserve-3d; will-change: transform;
+}
+.carousel-item { width: 380px; height: 380px; flex-shrink: 0; perspective: 1000px; }
+.album-card { position: relative; width: 100%; height: 100%; transition: all 0.5s ease; }
+.album-card img { 
+    width: 100%; height: 100%; object-fit: cover; 
+    border: 1px solid rgba(255,255,255,0.05);
+    filter: grayscale(100%) brightness(0.5); /* Começa morto */
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.carousel-item.active img {
+    filter: grayscale(0%) brightness(1.1);
+    border-color: var(--accent);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+}
+.album-info {
+    position: absolute; bottom: -35px; left: 0;
+    font-size: 10px; font-weight: 900; letter-spacing: 3px;
+    color: var(--accent); text-transform: uppercase; opacity: 0.4;
+}
+
+/* --- VINYL PLAYER SECTION --- */
+.vinyl-section {
+    height: 100vh;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 40;
+    margin-top: -195vh;
+}
+
+.vinyl-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* O Disco */
+.vinyl-wrapper {
+    position: relative;
+    width: clamp(300px, 45vw, 550px);
+    height: clamp(300px, 45vw, 550px);
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+/* Criação do Vinil via CSS Puro */
+.vinyl-disk {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 60px rgba(0,0,0,0.9);
+    
+    /* Mix de Gradientes Radiais para Simular Vinil */
+    background: 
+        /* 1. O reflexo de luz linear (Gloss) */
+        linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 40%, rgba(0,0,0,0) 60%, rgba(255,255,255,0.03) 100%),
+        /* 2. Os sulcos concêntricos (efeito óptico) */
+        repeating-radial-gradient(circle at center, #111 0px, #111 1px, #000 2px, #000 3px),
+        /* 3. A cor base e volume */
+        radial-gradient(circle, #222 0%, #000 100%);
+    
+    border: 3px solid #1a1a1a;
+}
+
+/* O furo central (Spindle hole) */
+.vinyl-disk::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #000;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    z-index: 10;
+}
+
+.vinyl-cover {
+    width: 35%;
+    height: 35%;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 5;
+    border: 2px solid #000;
+    background: #222;
+}
+
+.vinyl-cover img { width: 100%; height: 100%; object-fit: cover; }
+
+/* --- BRAÇO/AGULHA (Feito em CSS) --- */
+.tonearm-base {
+    position: absolute;
+    top: -20px;
+    right: -40px;
+    width: 160px;
+    height: 160px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Container de rotação da agulha */
+#tonearm {
+    width: 100%;
+    height: 100%;
+    transform-origin: 85% 20%; /* Ponto de pivô */
+    transform: rotate(-35deg); /* Posição de repouso */
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/* Haste principal */
+.arm-shaft {
+    width: 8px;
+    height: 80%;
+    background: linear-gradient(90deg, #333 0%, #666 50%, #333 100%);
+    border-radius: 4px;
+    margin-right: 15%;
+}
+
+/* Cabeçote/Agulha */
+.headshell {
+    width: 25px;
+    height: 40px;
+    background: linear-gradient(135deg, #222 0%, #444 100%);
+    border-radius: 4px;
+    position: absolute;
+    bottom: -15px;
+    left: 10%;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+}
+
+/* Quando está tocando, o braço move para o disco */
+.playing #tonearm { transform: rotate(-5deg); }
+
+/* Track Info (Mantemos igual à versão anterior) */
+.track-info { margin-top: 40px; text-align: center; }
+.track-status { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); opacity: 0.5; }
+#track-name { font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: 900; text-transform: uppercase; margin-top: 10px; }
+
+
+/* --- SOCIAL LIQUID SECTION --- */
+.social-liquid-section {
+    padding: 15vh 0;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 50;
+}
+
+.social-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.8em;
+    color: rgba(255, 255, 255, 0.2);
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.liquid-grid {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.liquid-btn {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+/* O Vidro Líquido */
+.liquid-glass {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    animation: liquid-morph 8s ease-in-out infinite;
+    transition: all 0.5s ease;
+    z-index: 1;
+}
+
+.liquid-btn:hover .liquid-glass {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+}
+
+.liquid-icon {
+    position: relative;
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 15px;
+    opacity: 0.4;
+    transition: all 0.4s ease;
+}
+
+.liquid-btn:hover .liquid-icon {
+    opacity: 1;
+    transform: scale(1.1) translateY(-5px);
+}
+
+.liquid-label {
+    position: relative;
+    z-index: 2;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+}
+
+.liquid-btn:hover .liquid-label {
+    opacity: 0.6;
+    transform: translateY(0);
+}
+
+/* Animação Orgânica */
+@keyframes liquid-morph {
+    0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+    50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+    100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+}
+
+/* --- FOOTER --- */
+.text-footer-outline { color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1); font-weight: 900; }
+/* --- AJ WEB STUDIO: SIGNATURE HIGH-END --- */
+.signature-reveal {
+    margin-top: 40px;
+}
+
+.aj-studio-branding {
+    text-decoration: none;
+    display: block;
+    padding: 20px 40px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.branding-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.branding-tag {
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--accent); /* DarkGray que definimos */
+    opacity: 0.6;
+}
+
+.branding-main {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.branding-by {
+    font-size: 10px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.branding-name {
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+}
+
+.branding-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 5px;
+}
+
+.status-dot {
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent);
+    animation: status-pulse 2s infinite;
+}
+
+.status-text {
+    font-size: 7px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+/* Animação de Pulse na Assinatura */
+@keyframes status-pulse {
+    0% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0.3; transform: scale(1); }
+}
+
+.aj-studio-branding:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-top-color: var(--accent);
+}
+
+.aj-studio-branding:hover .branding-name {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}

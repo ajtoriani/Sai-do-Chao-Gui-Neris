@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+<link rel="apple-touch-icon" href="favicon.png">
+    <title>Gui Neris | Sai do Chão</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+</head>
+<body class="bg-[#000] text-white overflow-x-hidden">
+
+    <div class="noise"></div>
+
+    <section class="relative h-screen w-full overflow-hidden flex items-center justify-center cursor-crosshair" id="hero">
+        <div class="absolute inset-0 bg-cover bg-center z-0 scale-105 hero-bg" style="background-image: url('Frame 7.png');"></div>
+        <div class="hero-mask absolute inset-0 bg-cover bg-center z-10 scale-105 hero-bg" style="background-image: url('Frame 8.png'); pointer-events: none;"></div>
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 opacity-20">
+            <div class="w-[1px] h-20 bg-gradient-to-b from-white to-transparent animate-pulse"></div>
+        </div>
+    </section>
+
+    <section class="clipe-section" id="section-corda-bamba">
+        <div class="parallax-wrapper">
+            <div class="layer layer-bg">
+                <img src="basecorda.png" alt="Teatro Corda Bamba Base">
+            </div>
+            <div class="layer layer-title">
+                <img src="cordatexto.png" alt="Título Corda Bamba">
+            </div>
+            <div class="layer layer-gui">
+                <img src="malabarista.png" alt="Gui Neris Malabarista" id="gui-personagem">
+            </div>
+        </div>
+    </section>
+
+    <section class="viver-novamente-section" id="viver-novamente">
+        <div class="telemetry-bg">
+            <svg id="lines-svg" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+                <path class="line-path" d="M0,200 Q250,100 500,200 T1000,200" />
+                <path class="line-path" d="M0,500 Q250,400 500,500 T1000,500" />
+                <path class="line-path" d="M0,800 Q250,700 500,800 T1000,800" />
+            </svg>
+        </div>
+
+        <div class="viver-content">
+            <h2 class="reveal-text">
+                <span class="serif-medium dim italic">Para aqueles que</span> <br> 
+                <span class="serif-medium dim italic">enterraram seu ministério.</span><br>
+                <span class="serif-medium dim">Aposentaram sua</span> <span class="grotesk-black color-white">arte.</span><br>
+                <span class="highlight">É hora de voltar a <br> <span class="viver-bold color-cyan-glow">viver outra vez.</span></span>
+            </h2>
+        </div>
+    </section>
+
+     <section class="bg-black overflow-hidden relative z-30" id="album-carousel">
+    <div class="carousel-3d-container">
+        <div class="carousel-3d-track">
+            <div class="carousel-item">
+                <div class="album-card">
+                    <img src="navio.png" alt="Capa 1">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="album-card">
+                    <img src="estrela.png" alt="Capa 2">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="album-card">
+                    <img src="corda.png" alt="Capa 3">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="album-card">
+                    <img src="carinha.png" alt="Capa 4">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="vinyl-section" id="vinyl-player">
+    <div class="vinyl-container">
+        <div class="tonearm-base">
+            <div id="tonearm">
+                <div class="arm-shaft"></div>
+                <div class="headshell"></div>
+            </div>
+        </div>
+
+        <div class="vinyl-wrapper magnetic-btn" id="vinyl-trigger">
+            <div class="vinyl-disk" id="disk">
+                <div class="vinyl-cover" id="current-cover">
+                    <img src="estrela.png" alt="Capa Atual">
+                </div>
+            </div>
+        </div>
+
+        <div class="track-info">
+            <span class="track-status">Toque duas vezes para próxima música</span>
+            <h3 id="track-name">Salmo 91</h3>
+            <p id="artist-name">Gui Neris</p>
+        </div>
+    </div>
+    <audio id="main-audio" src="salmo.mp3"></audio>
+</section>
+
+<section class="social-liquid-section" id="social">
+    <div class="social-container">
+        <h2 class="social-title">Conecte-se</h2>
+        
+        <div class="liquid-grid">
+            <a href="https://www.instagram.com/guineris/" class="liquid-btn group magnetic-btn" data-color="#E1306C">
+                <div class="liquid-glass"></div>
+                <div class="liquid-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </div>
+                <span class="liquid-label">Instagram</span>
+            </a>
+
+            <a href="https://www.youtube.com/@GuiNeris" class="liquid-btn group magnetic-btn" data-color="#FF0000">
+                <div class="liquid-glass"></div>
+                <div class="liquid-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.11 1 12 1 12s0 3.89.46 5.58a2.78 2.78 0 0 0 1.94 2c1.72.42 8.6.42 8.6.42s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.89 23 12 23 12s0-3.89-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon></svg>
+                </div>
+                <span class="liquid-label">YouTube</span>
+            </a>
+
+            <a href="https://open.spotify.com/intl-pt/artist/3b0kljAJUuDkWnCg12DGKo?si=Yj3rPH7uQEyvQbkxcdUjUA" class="liquid-btn group magnetic-btn" data-color="#1DB954">
+                <div class="liquid-glass"></div>
+                <div class="liquid-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><path d="M8 12.5c2.5-1 5.5-1 8 0"></path><path d="M9 15c2-1 4-1 6 0"></path><path d="M7 10c3-1.5 7-1.5 10 0"></path></svg>
+                </div>
+                <span class="liquid-label">Spotify</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+    <footer class="relative h-screen flex flex-col items-center justify-center bg-[#000] overflow-hidden z-50">
+        <div class="footer-text-container relative group cursor-default">
+            <h2 class="font-black text-[16vw] leading-none uppercase text-footer-outline">GUI NERIS</h2>
+        </div>
+
+           <div class="signature-reveal opacity-0 translate-y-5">
+    <a href="https://ajwebstudio.vercel.app/" target="_blank" class="aj-studio-branding magnetic-btn">
+        <div class="branding-content">
+            <span class="branding-tag">Product Design & Dev</span>
+            <div class="branding-main">
+                <span class="branding-by">BY</span>
+                <span class="branding-name">AJ WEB STUDIO</span>
+            </div>
+            <div class="branding-status">
+                <span class="status-dot"></span>
+                <span class="status-text">Available for projects</span>
+            </div>
+        </div>
+    </a>
+</div>
+            <p class="text-[8px] text-white/10 tracking-[0.5em] uppercase italic">© 2026 • Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
